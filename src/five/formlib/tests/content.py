@@ -11,10 +11,7 @@
 # FOR A PARTICULAR PURPOSE.
 #
 ##############################################################################
-"""Test content.
 
-$Id$
-"""
 from App.class_init import InitializeClass
 from OFS.SimpleItem import SimpleItem
 

@@ -12,8 +12,6 @@
 #
 ##############################################################################
 """Add and edit views
-
-$Id$
 """
 import sys
 from datetime import datetime

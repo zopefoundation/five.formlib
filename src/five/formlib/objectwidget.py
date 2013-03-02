@@ -17,8 +17,6 @@ This is needed because ObjectWidget uses ViewPageTemplateFile whose
 macro definition is unfortunately incompatible with ZopeTwoPageTemplateFile.
 So this subclass uses ZopeTwoPageTemplateFile for the template that renders
 the widget's sub-editform.
-
-$Id$
 """
 from AccessControl.SecurityInfo import ClassSecurityInfo
 from App.class_init import InitializeClass

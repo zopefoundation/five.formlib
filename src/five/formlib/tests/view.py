@@ -11,14 +11,12 @@
 # FOR A PARTICULAR PURPOSE.
 #
 ##############################################################################
-"""Five baseclasses for zope.formlib.form
 
-$Id$
-"""
 from zope.formlib import form
 
 from five.formlib.formbase import AddForm, EditForm
 from five.formlib.tests.content import IContent, Content
+
 
 class AddContentForm(AddForm):
     """AddForm for creating and adding IContent objects
@@ -29,12 +27,12 @@ class AddContentForm(AddForm):
     def createAndAdd(self, data):
         id = data.get('id')
         ctnt = Content(
-            id,  data.get('title'), somelist=data.get('somelist'))
+            id, data.get('title'), somelist=data.get('somelist'))
         self.context._setObject(id, ctnt)
+
 
 class EditContentForm(EditForm):
     """EditForm for editing IContent objects
     """
 
     form_fields = form.Fields(IContent)
-

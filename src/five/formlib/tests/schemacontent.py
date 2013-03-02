@@ -11,10 +11,7 @@
 # FOR A PARTICULAR PURPOSE.
 #
 ##############################################################################
-"""Demo schema content
 
-$Id$
-"""
 from App.class_init import InitializeClass
 from OFS.SimpleItem import SimpleItem
 

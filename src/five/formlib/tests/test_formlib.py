@@ -11,10 +11,6 @@
 # FOR A PARTICULAR PURPOSE.
 #
 ##############################################################################
-"""Test forms
-
-$Id$
-"""
 
 import unittest
 from doctest import DocTestSuite
