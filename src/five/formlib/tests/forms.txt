@@ -187,7 +187,7 @@ via and override in the zcml.  Let's ensure that that works:
   ... edittest2
   ... -----------------------------968064918930967154199105236--
   ... """, handle_errors=False)
-  HTTP/1.1 302 Moved Temporarily
+  HTTP/1.1 302 Found
   ...
   Location: http://localhost/test_folder_1_/ftf/manage_main
   ...
@@ -287,7 +287,7 @@ the form will submit correctly and create the object:
   ... unicodetest
   ... -----------------------------968064918930967154199105236--
   ... """ % (ni_hao, wo_hen_hao), handle_errors=False)
-  HTTP/1.1 302 Moved Temporarily
+  HTTP/1.1 302 Found
   ...
   Location: http://localhost/test_folder_1_/ftf/manage_main
   ...
