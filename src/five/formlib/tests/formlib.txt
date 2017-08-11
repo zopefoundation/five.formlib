@@ -58,7 +58,7 @@ like the traditional AddView and EditView, supports unicode:
   >>> browser.getControl(name="form.actions.apply").click()
   >>> isinstance(folder.content_1.title, unicode)
   True
-  >>> from ZPublisher import HTTPRequest 
+  >>> from ZPublisher import HTTPRequest
   >>> folder.content_1.title == ni_hao.decode(HTTPRequest.default_encoding)
   True
 
