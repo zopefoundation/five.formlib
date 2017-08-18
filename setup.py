@@ -33,7 +33,7 @@ setup(
         'zope.browsermenu',
         'zope.component',
         'zope.event',
-        'zope.formlib>=4.0',
+        'zope.formlib>=4.5',
         'zope.i18nmessageid',
         'zope.interface',
         'zope.lifecycleevent',
@@ -41,7 +41,7 @@ setup(
         'zope.publisher',
         'zope.schema',
         'ExtensionClass',
-        'Zope2>=2.13',
+        'Zope2>=2.13, <4.0a1, >=4.0a7.dev0',
     ],
     zip_safe=False,
 )
