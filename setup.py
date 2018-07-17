@@ -18,6 +18,8 @@ setup(
         'License :: OSI Approved :: Zope Public License',
         'Operating System :: OS Independent',
         'Programming Language :: Python',
+        'Programming Language :: Python :: 2',
+        'Programming Language :: Python :: 2.7',
         'Topic :: Internet :: WWW/HTTP :: Site Management',
     ],
     keywords='zope zope4 five formlib',
