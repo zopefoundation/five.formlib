@@ -60,6 +60,7 @@ def test_get_widgets_for_schema_fields():
       >>> tearDown()
     """
 
+
 def test_suite():
     return unittest.TestSuite([
         DocTestSuite(),

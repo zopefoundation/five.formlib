@@ -32,27 +32,27 @@ class IFieldContent(Interface):
         description=_(u"A short description of the event."),
         default=u"",
         required=True
-        )
+    )
 
     description = Text(
         title=_(u"Description"),
         description=_(u"A long description of the event."),
         default=u"",
         required=False
-        )
+    )
 
     somenumber = Int(
         title=_(u"Some number"),
         default=0,
         required=False
-        )
+    )
 
     somelist = List(
         title=_(u"Some List"),
         value_type=TextLine(title=_(u"Some item")),
         default=[],
         required=False
-        )
+    )
 
 class FieldContent(SimpleItem):
     """A Viewable piece of content with fields"""
@@ -63,12 +63,15 @@ class FieldContent(SimpleItem):
         self.id = id
         self.title = title
 
+
 InitializeClass(FieldContent)
+
 
 def manage_addFieldContent(self, id, title, REQUEST=None):
     """Add the field content"""
     id = self._setObject(id, FieldContent(id, title))
     return ''
+
 
 class IComplexSchemaContent(Interface):
 
@@ -86,30 +89,35 @@ class IComplexSchemaContent(Interface):
 
 class ComplexSchemaContent(SimpleItem):
      implements(IComplexSchemaContent)
-     meta_type ="Five ComplexSchemaContent"
+    meta_type = "Five ComplexSchemaContent"
 
-     def __init__(self, id):
-         self.id = id
-         self.fish = FieldContent('fish', 'title')
-         self.fish.description = ""
-         self.fishtype = 'Lost fishy'
+    def __init__(self, id):
+        self.id = id
+        self.fish = FieldContent('fish', 'title')
+        self.fish.description = ""
+        self.fishtype = 'Lost fishy'
+
 
 class ComplexSchemaView:
     """Needs a docstring"""
 
     fish_widget = CustomWidgetFactory(ObjectWidget, FieldContent)
 
+
 InitializeClass(ComplexSchemaContent)
+
 
 def manage_addComplexSchemaContent(self, id, REQUEST=None):
     """Add the complex schema content"""
     id = self._setObject(id, ComplexSchemaContent(id))
     return ''
 
+
 def modifiedSubscriber(content, ev):
     """A simple event handler, which sets a flag on the object"""
     content._modified_flag = True
 
-def createdSubscriber(content,ev):
+
+def createdSubscriber(content, ev):
     """A simple event handler, which sets a flag on the object"""
     content._created_flag = True

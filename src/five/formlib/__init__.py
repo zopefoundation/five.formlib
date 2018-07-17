@@ -28,6 +28,7 @@ from zope.location.interfaces import ILocation
 from zope.location import LocationProxy
 from zope.schema.interfaces import ValidationError
 from zope.i18nmessageid import MessageFactory
+from zope.schema import getFieldNamesInOrder
 
 from zope.app.form.browser.submit import Update
 from zope.app.form.utility import setUpEditWidgets
@@ -78,7 +79,7 @@ class EditView(BrowserView):
             widget.setPrefix(prefix)
 
     def widgets(self):
-        return [getattr(self, name+'_widget')
+        return [getattr(self, name + '_widget')
                 for name in self.fieldNames]
 
     def changed(self):
@@ -99,8 +100,8 @@ class EditView(BrowserView):
         if Update in self.request.form.keys():
             changed = False
             try:
-                changed = applyWidgetsChanges(self, self.schema,
-                    target=content, names=self.fieldNames)
+                changed = applyWidgetsChanges(
+                    self, self.schema, target=content, names=self.fieldNames)
                 # We should not generate events when an adapter is used.
                 # That's the adapter's job.  We need to unwrap the objects to
                 # compare them, as they are wrapped differently.
@@ -109,10 +110,10 @@ class EditView(BrowserView):
                 # when they are identical.  In particular
                 # aq_base(self.adapted) != self.adapted.aq_base :-(
                 if changed and getattr(self.context, 'aq_base', self.context)\
-                            is getattr(self.adapted, 'aq_base', self.adapted):
+                        is getattr(self.adapted, 'aq_base', self.adapted):
                     description = Attributes(self.schema, *self.fieldNames)
                     notify(ObjectModifiedEvent(content, description))
-            except WidgetsError, errors:
+            except WidgetsError as errors:
                 self.errors = errors
                 status = _("An error occurred.")
                 transaction.abort()
@@ -123,13 +124,14 @@ class EditView(BrowserView):
                 if changed:
                     self.changed()
                     formatter = self.request.locale.dates.getFormatter(
-                       'dateTime', 'medium')
+                        'dateTime', 'medium')
                     status = _("Updated on ${date_time}",
-                              mapping={'date_time':
-                                       formatter.format(datetime.utcnow())})
+                               mapping={'date_time':
+                                        formatter.format(datetime.utcnow())})
 
         self.update_status = status
         return status
+
 
 class AddView(EditView):
     """Simple edit-view base class.
@@ -152,7 +154,7 @@ class AddView(EditView):
             try:
                 data = getWidgetsData(self, self.schema, names=self.fieldNames)
                 self.createAndAdd(data)
-            except WidgetsError, errors:
+            except WidgetsError as errors:
                 self.errors = errors
                 self.update_status = _("An error occurred.")
                 return self.update_status

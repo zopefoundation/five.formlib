@@ -18,12 +18,12 @@ import os.path
 import zope.formlib
 from zope import interface
 from zope.formlib import interfaces, form
-from zope.i18nmessageid import MessageFactory
-_ = MessageFactory("zope")
 
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.Five.browser.decode import processInputs
 from ZPublisher import HTTPRequest
+from zope.i18nmessageid import MessageFactory
+_ = MessageFactory("zope")
 
 _FORMLIB_DIR = os.path.dirname(zope.formlib.__file__)
 _PAGEFORM_PATH = os.path.join(_FORMLIB_DIR, 'pageform.pt')
@@ -45,8 +45,10 @@ class FiveFormlibMixin(object):
 
     def update(self):
         # BBB: for CMFDefault < 2.3 (explicit charset required)
-        self.request.RESPONSE.setHeader('Content-Type',
-            'text/html; charset=%s' % HTTPRequest.default_encoding)
+        self.request.RESPONSE.setHeader(
+            'Content-Type',
+            'text/html; charset=%s' % HTTPRequest.default_encoding
+        )
         # BBB: for Zope < 4
         if not getattr(self.request, 'postProcessInputs', False):
             processInputs(self.request, [HTTPRequest.default_encoding])

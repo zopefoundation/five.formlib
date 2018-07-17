@@ -30,7 +30,7 @@ try:
     from Products.Five.browser.metaconfigure import SimpleViewClass
 except ImportError:
     # Zope < 4
-    from Products.Five.browser.metaconfigure import makeClassForTemplate as SimpleViewClass
+    from Products.Five.browser.metaconfigure import makeClassForTemplate as SimpleViewClass  # noqa: E501
 from five.formlib import EditView, AddView
 
 _ = MessageFactory('zope')
@@ -40,7 +40,7 @@ def EditViewFactory(name, schema, label, permission, layer,
                     template, default_template, bases, for_, fields,
                     fulledit_path=None, fulledit_label=None, menu=u''):
     class_ = SimpleViewClass(template, globals(), used_for=schema,
-                                  bases=bases)
+                             bases=bases)
     class_.schema = schema
     class_.label = label
     class_.fieldNames = fields
@@ -65,6 +65,7 @@ def EditViewFactory(name, schema, label, permission, layer,
     protectClass(class_, permission)
     InitializeClass(class_)
 
+
 class FiveFormDirective(BaseFormDirective):
 
     def _processWidgets(self):
@@ -72,6 +73,7 @@ class FiveFormDirective(BaseFormDirective):
             customWidgetsObject = type(
                 'CustomWidgetsMixin', (Base,), self._widgets)
             self.bases = self.bases + (customWidgetsObject,)
+
 
 class EditFormDirective(FiveFormDirective):
 
@@ -103,7 +105,7 @@ def AddViewFactory(name, schema, label, permission, layer,
                    keyword_arguments, set_before_add, set_after_add,
                    menu=u''):
     class_ = SimpleViewClass(template, globals(), used_for=schema,
-                                  bases=bases)
+                             bases=bases)
 
     class_.schema = schema
     class_.label = label
@@ -127,6 +129,7 @@ def AddViewFactory(name, schema, label, permission, layer,
     # translated to the CheckerPublic object
     protectClass(class_, permission)
     InitializeClass(class_)
+
 
 class AddFormDirective(FiveFormDirective):
 
@@ -214,8 +217,8 @@ class AddFormDirective(FiveFormDirective):
         self._context.action(
             discriminator=self._discriminator(),
             callable=AddViewFactory,
-            args=self._args()+(self.content_factory, self.arguments,
+            args=self._args() + (self.content_factory, self.arguments,
                                  self.keyword_arguments,
                                  self.set_before_add, self.set_after_add),
             kw={'menu': self.menu},
-            )
+        )

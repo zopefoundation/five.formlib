@@ -24,6 +24,7 @@ from zope.schema import TextLine
 
 _ = MessageFactory('formtest')
 
+
 class IContent(Interface):
 
     id = ASCIILine(
@@ -31,21 +32,21 @@ class IContent(Interface):
         description=_(u"The object id."),
         default='',
         required=True
-        )
+    )
 
     title = TextLine(
         title=_(u"Title"),
         description=_(u"A short description of the event."),
         default=u"",
         required=True
-        )
+    )
 
     somelist = List(
         title=_(u"Some List"),
         value_type=TextLine(title=_(u"Some item")),
         default=[],
         required=False
-        )
+    )
 
 class Content(SimpleItem):
     """A Viewable piece of content with fields
@@ -58,5 +59,6 @@ class Content(SimpleItem):
         self.id = id
         self.title = title
         self.somelist = somelist
+
 
 InitializeClass(Content)

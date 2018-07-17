@@ -31,6 +31,7 @@ class ObjectWidgetView(OWVBase):
 
     template = ViewPageTemplateFile('objectwidget.pt')
 
+
 InitializeClass(ObjectWidgetView)
 
 
@@ -49,5 +50,6 @@ class ObjectWidgetClass(OWBase):
                 # breaks when the rendered value is None)
                 val = self.context.schema[name].default
             self.getSubWidget(name).setRenderedValue(val)
+
 
 ObjectWidget = ObjectWidgetClass
