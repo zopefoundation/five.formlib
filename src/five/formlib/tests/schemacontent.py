@@ -88,7 +88,7 @@ class IComplexSchemaContent(Interface):
         required=True)
 
 class ComplexSchemaContent(SimpleItem):
-     implements(IComplexSchemaContent)
+    implements(IComplexSchemaContent)
     meta_type = "Five ComplexSchemaContent"
 
     def __init__(self, id):
