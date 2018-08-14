@@ -4,9 +4,9 @@ Changelog
 2.0 - unreleased
 ------------------
 
-* Update various imports to zope.formlib.
-
 * Support Zope 4 only.
+
+* Update various imports to zope.formlib.
 
 * Avoid charset negotiation.
 
