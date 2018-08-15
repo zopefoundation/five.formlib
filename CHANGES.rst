@@ -1,8 +1,8 @@
 Changelog
 =========
 
-2.0 - unreleased
-------------------
+2.0 (2018-08-15)
+----------------
 
 * Support Zope 4 only. (Aka drop support for Zope 2.13.)
 
