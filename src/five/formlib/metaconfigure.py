@@ -26,11 +26,7 @@ from zope.browsermenu.metaconfigure import menuItemDirective
 from zope.publisher.interfaces.browser import IDefaultBrowserLayer
 
 from Products.Five.browser.pagetemplatefile import ZopeTwoPageTemplateFile
-try:
-    from Products.Five.browser.metaconfigure import SimpleViewClass
-except ImportError:
-    # Zope < 4
-    from Products.Five.browser.metaconfigure import makeClassForTemplate as SimpleViewClass  # noqa: E501
+from Products.Five.browser.metaconfigure import SimpleViewClass
 from five.formlib import EditView, AddView
 
 _ = MessageFactory('zope')
