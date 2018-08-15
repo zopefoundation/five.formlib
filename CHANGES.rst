@@ -4,7 +4,7 @@ Changelog
 2.0 - unreleased
 ------------------
 
-* Support Zope 4 only.
+* Support Zope 4 only. (Aka drop support for Zope 2.13.)
 
 * Update various imports to zope.formlib.
 
