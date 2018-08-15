@@ -1,10 +1,10 @@
 from setuptools import setup
 
-__version__ = '1.1.0dev'
+version = '1.1.0dev'
 
 setup(
     name='five.formlib',
-    version=__version__,
+    version=version,
     url='http://pypi.python.org/pypi/five.formlib',
     license='ZPL 2.1',
     description='zope.formlib integration for Zope.',
