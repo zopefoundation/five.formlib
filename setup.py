@@ -43,7 +43,7 @@ setup(
         'zope.publisher',
         'zope.schema',
         'ExtensionClass',
-        'Zope ',
+        'Zope',
     ],
     zip_safe=False,
 )
