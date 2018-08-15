@@ -1,7 +1,22 @@
 include *.rst
 include *.txt
 
-recursive-include src *
+include *.cfg
+exclude *.cfg
+include buildout.cfg
 
-global-exclude *.pyc
-global-exclude *.pyo
+include .gitignore
+exclude .gitignore
+
+include .travis.yml
+exclude .travis.yml
+
+include bootstrap.py
+exclude bootstrap.py
+
+recursive-include src *.po
+recursive-include src *.pot
+recursive-include src *.pt
+recursive-include src *.py
+recursive-include src *.txt
+recursive-include src *.zcml
