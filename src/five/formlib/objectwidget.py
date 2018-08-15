@@ -19,7 +19,7 @@ So this subclass uses ZopeTwoPageTemplateFile for the template that renders
 the widget's sub-editform.
 """
 from AccessControl.SecurityInfo import ClassSecurityInfo
-from App.class_init import InitializeClass
+from AccessControl.class_init import InitializeClass
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from zope.formlib.objectwidget import ObjectWidget as OWBase
 from zope.formlib.objectwidget import ObjectWidgetView as OWVBase

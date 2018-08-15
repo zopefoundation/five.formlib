@@ -13,7 +13,7 @@
 ##############################################################################
 
 from AccessControl.security import protectClass
-from App.class_init import InitializeClass
+from AccessControl.class_init import InitializeClass
 from ExtensionClass import Base
 
 import zope.component

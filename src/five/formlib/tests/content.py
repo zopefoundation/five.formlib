@@ -12,7 +12,7 @@
 #
 ##############################################################################
 
-from App.class_init import InitializeClass
+from AccessControl.class_init import InitializeClass
 from OFS.SimpleItem import SimpleItem
 
 from zope.i18nmessageid import MessageFactory
