@@ -16,7 +16,7 @@ from AccessControl.class_init import InitializeClass
 from OFS.SimpleItem import SimpleItem
 
 from zope.i18nmessageid import MessageFactory
-from zope.interface import implements
+from zope.interface import implementer
 from zope.interface import Interface
 from zope.schema import ASCIILine
 from zope.schema import List
@@ -48,10 +48,10 @@ class IContent(Interface):
         required=False
     )
 
+@implementer(IContent)
 class Content(SimpleItem):
     """A Viewable piece of content with fields
     """
-    implements(IContent)
 
     meta_type = 'Five Formlib Test Content'
 
