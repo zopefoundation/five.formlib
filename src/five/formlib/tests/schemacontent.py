@@ -17,7 +17,7 @@ from OFS.SimpleItem import SimpleItem
 
 from zope.formlib.widget import CustomWidgetFactory
 from zope.i18nmessageid import MessageFactory
-from zope.interface import implements, Interface
+from zope.interface import implementer, Interface
 from zope.schema import TextLine, Text, Object, Int, List
 
 from five.formlib.objectwidget import ObjectWidget
@@ -54,9 +54,9 @@ class IFieldContent(Interface):
         required=False
     )
 
+@implementer(IFieldContent)
 class FieldContent(SimpleItem):
     """A Viewable piece of content with fields"""
-    implements(IFieldContent)
     meta_type = 'Five FieldContent'
 
     def __init__(self, id, title):
@@ -87,8 +87,8 @@ class IComplexSchemaContent(Interface):
         description=u"The fishy object",
         required=True)
 
+@implementer(IComplexSchemaContent)
 class ComplexSchemaContent(SimpleItem):
-    implements(IComplexSchemaContent)
     meta_type = "Five ComplexSchemaContent"
 
     def __init__(self, id):

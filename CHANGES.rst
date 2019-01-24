@@ -4,7 +4,7 @@ Changelog
 2.1 (unreleased)
 ----------------
 
-- Nothing changed yet.
+* Replace Python 3 incompatible `zope.interface.implements` by `zope.interface.implementer`
 
 
 2.0 (2018-08-15)

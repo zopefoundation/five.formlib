@@ -68,50 +68,43 @@ class AddFormBase(FiveFormlibMixin, form.AddFormBase):
     pass
 
 
-class PageForm(FormBase):
-
-    interface.implements(interfaces.IPageForm)
+@interface.implementer(interfaces.IPageForm)
+class PageForm(FormBase): pass
 
 Form = PageForm
 
 
-class PageEditForm(EditFormBase):
-
-    interface.implements(interfaces.IPageForm)
+@interface.implementer(interfaces.IPageForm)
+class PageEditForm(EditFormBase): pass
 
 EditForm = PageEditForm
 
 
-class PageDisplayForm(DisplayFormBase):
-
-    interface.implements(interfaces.IPageForm)
+@interface.implementer(interfaces.IPageForm)
+class PageDisplayForm(DisplayFormBase): pass
 
 DisplayForm = PageDisplayForm
 
 
-class PageAddForm(AddFormBase):
-
-    interface.implements(interfaces.IPageForm)
+@interface.implementer(interfaces.IPageForm)
+class PageAddForm(AddFormBase): pass
 
 AddForm = PageAddForm
 
 
+@interface.implementer(interfaces.ISubPageForm)
 class SubPageForm(FormBase):
 
     template = ViewPageTemplateFile(_SUBPAGEFORM_PATH)
 
-    interface.implements(interfaces.ISubPageForm)
 
-
+@interface.implementer(interfaces.ISubPageForm)
 class SubPageEditForm(EditFormBase):
 
     template = ViewPageTemplateFile(_SUBPAGEFORM_PATH)
 
-    interface.implements(interfaces.ISubPageForm)
 
-
+@interface.implementer(interfaces.ISubPageForm)
 class SubPageDisplayForm(DisplayFormBase):
 
     template = ViewPageTemplateFile(_SUBPAGEFORM_PATH)
-
-    interface.implements(interfaces.ISubPageForm)
