@@ -4,6 +4,8 @@ Changelog
 2.1 (unreleased)
 ----------------
 
+* Make testsuite Python 3/2 compatible
+
 * Replace Python 3 incompatible `zope.interface.implements` by `zope.interface.implementer`
 
 
