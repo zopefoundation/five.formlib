@@ -148,7 +148,7 @@ class AddView(EditView):
             # We've been called before. Just return the previous result.
             return self.update_status
 
-        if self.request.form.has_key(Update):
+        if Update in self.request.form:
 
             self.update_status = ''
             try:
