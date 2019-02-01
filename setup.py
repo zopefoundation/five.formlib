@@ -5,7 +5,7 @@ version = '2.1.dev0'
 setup(
     name='five.formlib',
     version=version,
-    url='http://pypi.python.org/pypi/five.formlib',
+    url='https://github.com/zopefoundation/five.formlib',
     license='ZPL 2.1',
     description='zope.formlib integration for Zope.',
     author='Zope Foundation',
