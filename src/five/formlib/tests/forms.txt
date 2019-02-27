@@ -1,8 +1,13 @@
 Testing forms
 =============
 
-Before we can begin, we need to set up a few things.  We need a
-manager account:
+Before we can begin, we need to set up a few things.
+
+We prepare for Python 2/3 compatibility:
+
+  >>> import six
+
+We need a manager account:
 
   >>> uf = self.folder.acl_users
   >>> _ignored = uf._doAddUser('manager', 'r00t', ['Manager'], [])
@@ -37,7 +42,7 @@ We can add objects to containers (object managers) through add forms.
 An unprotected form can be accessed with anonymously:
 
   >>> browser.open("http://localhost/test_folder_1_/ftf/+/addfieldcontent.html")
-  >>> print (browser.headers)
+  >>> print(browser.headers)
   Status: 200 ...
   ...
 
@@ -52,7 +57,7 @@ For a protected one we need a manager account:
 
   >>> browser.addHeader('Authorization', 'Basic manager:r00t')
   >>> browser.open("http://localhost/test_folder_1_/ftf/+/protectedaddform.html")
-  >>> print (browser.headers)
+  >>> print(browser.headers)
   Status: 200 ...
   ...
 
@@ -69,7 +74,7 @@ on it:
 Having added this piece of content, we can access it under its URL:
 
   >>> browser.open("http://localhost/test_folder_1_/ftf/edittest")
-  >>> print (browser.headers)
+  >>> print(browser.headers)
   Status: 200 ...
   ...
 
@@ -107,10 +112,10 @@ Therefore, if we specify invalid data, our object won't change:
   >>> ctl = browser.getControl(name="field.description")
   >>> ctl.value = 'BarDescription'
   >>> browser.getControl(name="UPDATE_SUBMIT").click()
-  >>> print (browser.headers)
+  >>> print(browser.headers)
   Status: 200 ...
   ...
-  >>> print (browser.contents)
+  >>> print(browser.contents)
   <html>
   ...
             There are <strong>1</strong> input errors.
@@ -132,7 +137,7 @@ However, when we specify the correct fields:
   >>> ctl = browser.getControl(name="field.description")
   >>> ctl.value = 'FooDescription'
   >>> browser.getControl(name="UPDATE_SUBMIT").click()
-  >>> print (browser.headers)
+  >>> print(browser.headers)
   Status: 200 ...
   ...
 
@@ -155,7 +160,7 @@ Widget Overrides
 We have an alternate add form for IFieldContent which uses a TextArea widget
 via and override in the zcml.  Let's ensure that that works:
 
-  >>> print (http(r"""
+  >>> print(http(r"""
   ... GET /test_folder_1_/ftf/+/addwidgetoverride.html HTTP/1.1
   ... """, handle_errors=False))
   HTTP/1.1 200 OK
@@ -163,7 +168,7 @@ via and override in the zcml.  Let's ensure that that works:
   ...<textarea
   ...
 
-  >>> print (http_request(
+  >>> print(http_request(
   ...     "/test_folder_1_/ftf/+/addwidgetoverride.html", (
   ...         ("field.title", "title2"),
   ...         ("field.description", "Blah"),
@@ -203,11 +208,9 @@ for Python 3. The following function converts our input values
 accordingly:
 
   >>> def to_input(v):
-  ...     if hasattr("", "decode"):
-  ...         # this is Python 2
+  ...     if six.PY2:
   ...         return v.encode("utf-8")
   ...     else:
-  ...         # this is Python 3
   ...         return v
 
 Even though ZPublisher does not support unicode, automatically
@@ -220,7 +223,7 @@ chinese sequences (How do you do? and I'm doing good) in forms:
 First, it's imaginable that we make a mistake and enter one of the
 phrases in the integer field:
 
-  >>> print (http_request(
+  >>> print(http_request(
   ...     "/test_folder_1_/ftf/+/addfieldcontent.html", (
   ...         ("field.title", "ChineseTitle"),
   ...         ("field.description", "ChineseDescription"),
@@ -237,7 +240,7 @@ phrases in the integer field:
 When we enter the unicode data in the right fields (the text fields),
 the form will submit correctly and create the object:
 
-  >>> print (http_request(
+  >>> print(http_request(
   ...     "/test_folder_1_/ftf/+/addfieldcontent.html", (
   ...         ("field.title", to_input(ni_hao)),
   ...         ("field.description", to_input(wo_hen_hao)),
@@ -265,7 +268,7 @@ course:
 Of course, the same should apply to edit forms.  First, we happen to
 again make the mistake of entering unicode data in the integer field:
 
-  >>> print (http_request(
+  >>> print(http_request(
   ...     "/test_folder_1_/ftf/unicodetest/@@edit.html", (
   ...         ("field.title", "ChineseTitle"),
   ...         ("field.description", "ChineseDescription"),
@@ -289,7 +292,7 @@ We see that the object hasn't changed:
 
 Now we provide some valid form data:
 
-  >>> print (http_request(
+  >>> print(http_request(
   ...     "/test_folder_1_/ftf/unicodetest/@@edit.html", (
   ...         ("field.title", to_input(wo_hen_hao)),
   ...         ("field.description", to_input(ni_hao)),
@@ -312,7 +315,7 @@ We see that the object's data has changed:
 Let's also not forget about List widgets.  Let's see if we can add an
 element to the list:
 
-  >>> print (http_request(
+  >>> print(http_request(
   ...     "/test_folder_1_/ftf/unicodetest/@@edit.html", (
   ...         ("field.title", to_input(ni_hao)),
   ...         ("field.description", to_input(wo_hen_hao)),
@@ -330,7 +333,7 @@ Now, let's enter some more Chinese:
 
   >>> de_guo = u'\u5fb7\u56fd'
 
-  >>> print (http_request(
+  >>> print(http_request(
   ...     "/test_folder_1_/ftf/unicodetest/@@edit.html", (
   ...         ("field.title", to_input(ni_hao)),
   ...         ("field.description", to_input(wo_hen_hao)),
@@ -359,7 +362,7 @@ that the edit form works:
   ...     manage_addComplexSchemaContent
   >>> n = manage_addComplexSchemaContent(self.folder.ftf, 'objecttest')
 
-  >>> print (http(r"""
+  >>> print(http(r"""
   ... GET /test_folder_1_/ftf/objecttest/@@edit.html HTTP/1.1
   ... """, handle_errors=False))
   HTTP/1.1 200 OK

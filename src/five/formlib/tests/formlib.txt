@@ -7,8 +7,13 @@ examples.
 It will not test the actual formlib functionality. See
 zope/formlib/form.txt for tests and more explanations of zope.formlib
 
-Before we can begin, we need to set up a few things. We need a manager
-account:
+Before we can begin, we need to set up a few things.
+
+We prepare for Python 2/3 compatibility:
+
+  >>> import six
+
+We need a manager account:
 
   >>> uf = self.folder.acl_users
   >>> _ignored = uf._doAddUser('manager', 'r00t', ['Manager'], [])
@@ -45,7 +50,7 @@ Let's 'manually' create a Content instance and add it to the folder:
   >>> obj = content.Content('content_1', 'Title', [])
   >>> folder._setObject('content_1', obj)
   'content_1'
-  >>> print (folder.content_1.title)
+  >>> print(folder.content_1.title)
   Title
 
 Now we can edit this content object, e.g. changing the title. Formlib,
@@ -55,11 +60,9 @@ the test framework expects utf-8 encoded binary strings; for Python 3,
 it expects text. The function below converts as necessary.
 
   >>> def to_input(v):
-  ...     if hasattr("", "decode"):
-  ...         # this is Python 2
+  ...     if six.PY2:
   ...         return v.encode("utf-8")
   ...     else:
-  ...         # this is Python 3
   ...         return v
 
 
@@ -85,7 +88,7 @@ Adding a new content object, with two list items:
   >>> ctl = browser.getControl(name="form.somelist.1.")
   >>> ctl.value = 'a nice list item'
   >>> browser.getControl(name="form.actions.add").click()
-  >>> print (folder.test123.somelist == [u'a nice list item', u'a nice list item'])
+  >>> folder.test123.somelist == [u'a nice list item', u'a nice list item']
   True
 
 Clean up
