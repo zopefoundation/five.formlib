@@ -54,6 +54,7 @@ class IFieldContent(Interface):
         required=False
     )
 
+
 @implementer(IFieldContent)
 class FieldContent(SimpleItem):
     """A Viewable piece of content with fields"""
@@ -86,6 +87,7 @@ class IComplexSchemaContent(Interface):
         schema=IFieldContent,
         description=u"The fishy object",
         required=True)
+
 
 @implementer(IComplexSchemaContent)
 class ComplexSchemaContent(SimpleItem):

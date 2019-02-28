@@ -15,6 +15,8 @@
 import unittest
 from doctest import DocTestSuite
 from Testing.ZopeTestCase import FunctionalDocFileSuite
+from uuid import uuid4
+from Testing.ZopeTestCase.zopedoctest.functional import http
 
 
 def test_get_widgets_for_schema_fields():
@@ -61,10 +63,6 @@ def test_get_widgets_for_schema_fields():
     """
 
 
-from uuid import uuid4
-
-from Testing.ZopeTestCase.zopedoctest.functional import http
-
 def http_request(url, form_parts=None, body=None, auth=None):
     """perform HTTP request from given parameters.
 
@@ -95,9 +93,11 @@ def http_request(url, form_parts=None, body=None, auth=None):
         headers.append("Authorization: " + auth)
     headers.append("Accept-Charset: ISO-8859-1,utf-8;q=0.7,*;q=0.7")
     if body is not None:
-        if not body.endswith("\n"): body += "\n"
+        if not body.endswith("\n"):
+            body += "\n"
         headers.append("Content-Length: " + str(len(body)))
-        headers.append("Content-Type: " +
+        headers.append(
+            "Content-Type: " +
             ("application/x-www-form-urlencoded" if boundary is None
              else "multipart/form-data; boundary=" + boundary
             )
