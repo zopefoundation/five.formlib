@@ -68,25 +68,33 @@ class AddFormBase(FiveFormlibMixin, form.AddFormBase):
 
 
 @interface.implementer(interfaces.IPageForm)
-class PageForm(FormBase):  pass
+class PageForm(FormBase):
+    pass
+
 
 Form = PageForm
 
 
 @interface.implementer(interfaces.IPageForm)
-class PageEditForm(EditFormBase):  pass
+class PageEditForm(EditFormBase):
+    pass
+
 
 EditForm = PageEditForm
 
 
 @interface.implementer(interfaces.IPageForm)
-class PageDisplayForm(DisplayFormBase):  pass
+class PageDisplayForm(DisplayFormBase):
+    pass
+
 
 DisplayForm = PageDisplayForm
 
 
 @interface.implementer(interfaces.IPageForm)
-class PageAddForm(AddFormBase):  pass
+class PageAddForm(AddFormBase):
+    pass
+
 
 AddForm = PageAddForm
 

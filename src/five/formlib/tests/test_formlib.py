@@ -99,9 +99,8 @@ def http_request(url, form_parts=None, body=None, auth=None):
         headers.append(
             "Content-Type: " +
             ("application/x-www-form-urlencoded" if boundary is None
-             else "multipart/form-data; boundary=" + boundary
-            )
-            )
+             else "multipart/form-data; boundary=" + boundary)
+                      )
         body = "\n\n" + body
     return http("\n".join(headers) + (body or ''))
 
