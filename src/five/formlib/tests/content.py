@@ -48,6 +48,7 @@ class IContent(Interface):
         required=False
     )
 
+
 @implementer(IContent)
 class Content(SimpleItem):
     """A Viewable piece of content with fields

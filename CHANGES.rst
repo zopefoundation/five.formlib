@@ -4,7 +4,7 @@ Changelog
 2.1 (unreleased)
 ----------------
 
-* Replace Python 3 incompatible `zope.interface.implements` by `zope.interface.implementer`
+* Add support for Python 3.5 to 3.7
 
 
 2.0 (2018-08-15)

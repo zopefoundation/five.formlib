@@ -15,6 +15,8 @@
 import unittest
 from doctest import DocTestSuite
 from Testing.ZopeTestCase import FunctionalDocFileSuite
+from uuid import uuid4
+from Testing.ZopeTestCase.zopedoctest.functional import http
 
 
 def test_get_widgets_for_schema_fields():
@@ -61,9 +63,53 @@ def test_get_widgets_for_schema_fields():
     """
 
 
+def http_request(url, form_parts=None, body=None, auth=None):
+    """perform HTTP request from given parameters.
+
+    The primary purpose of this auxiliary function is to compute
+    the `Content-Length` header. While Python 2's `cgi` module
+    seems resilient to a wrong `Content-Length`, Python 3's `cgi` fails
+    badly (at least for a too small value).
+
+    If given, *form_parts* must be an iterable yielding pairs *name*,*value*.
+    *body* is then computed as a typical form response from it.
+    Otherwise, if *body* is not `None`, it defines the request content.
+    Otherwise, a `GET` request is created.
+    """
+    boundary = None
+    if form_parts is not None:
+        boundary = str(uuid4())
+        body = "".join(
+            "--" + boundary + "\n" +
+            "Content-Disposition: form-data; name=\"" + name + "\"\n\n" +
+            value + "\n"
+            for (name, value) in form_parts
+            ) + "--" + boundary + "--\n"
+    headers = []
+    headers.append(("POST" if body is not None else "GET")
+                   + " " + url + " HTTP/1.1"
+                   )
+    if auth:
+        headers.append("Authorization: " + auth)
+    headers.append("Accept-Charset: ISO-8859-1,utf-8;q=0.7,*;q=0.7")
+    if body is not None:
+        if not body.endswith("\n"):
+            body += "\n"
+        headers.append("Content-Length: " + str(len(body)))
+        headers.append(
+            "Content-Type: " +
+            ("application/x-www-form-urlencoded" if boundary is None
+             else "multipart/form-data; boundary=" + boundary)
+                      )
+        body = "\n\n" + body
+    return http("\n".join(headers) + (body or ''))
+
+
 def test_suite():
     return unittest.TestSuite([
         DocTestSuite(),
-        FunctionalDocFileSuite('forms.txt', package="five.formlib.tests",),
+        FunctionalDocFileSuite('forms.txt', package="five.formlib.tests",
+                               globs=dict(http_request=http_request),
+                               ),
         FunctionalDocFileSuite('formlib.txt', package='five.formlib.tests'),
     ])
