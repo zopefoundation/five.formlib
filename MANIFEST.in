@@ -1,8 +1,7 @@
 include *.rst
 include *.txt
-
-include *.cfg
-exclude *.cfg
+include .coveragerc
+include tox.ini
 include buildout.cfg
 
 include .gitignore
