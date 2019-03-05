@@ -1,7 +1,7 @@
 Changelog
 =========
 
-2.1 (unreleased)
+2.1 (2019-03-05)
 ----------------
 
 * Add support for Python 3.5 to 3.7
