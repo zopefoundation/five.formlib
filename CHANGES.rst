@@ -1,7 +1,7 @@
 Changelog
 =========
 
-2.2 (unreleased)
+2.2 (2020-10-26)
 ----------------
 
 * Add support for Zope 5.
