@@ -4,7 +4,7 @@ Changelog
 2.2 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Add support for Zope 5.
 
 
 2.1 (2019-03-05)
