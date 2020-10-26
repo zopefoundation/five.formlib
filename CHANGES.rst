@@ -4,7 +4,9 @@ Changelog
 2.2 (unreleased)
 ----------------
 
-- Add support for Zope 5.
+* Add support for Zope 5.
+
+* Add support for Python 3.8 and 3.9
 
 
 2.1 (2019-03-05)
