@@ -37,6 +37,18 @@ from zope.app.form.utility import getWidgetsData
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ZopeTwoPageTemplateFile
 
+try:
+    # Zope 4.x
+    from Products.Five.browser.decode import processInputs, setPageEncoding
+except ImportError:
+    # Zope 5.x
+    def processInputs(*args):
+        pass
+
+    def setPageEncoding(*args):
+        pass
+
+
 _ = MessageFactory('zope')
 
 
@@ -59,6 +71,8 @@ class EditView(BrowserView):
 
     def __init__(self, context, request):
         BrowserView.__init__(self, context, request)
+        processInputs(self.request, self.charsets)
+        setPageEncoding(self.request)
         self._setUpWidgets()
 
     def _setUpWidgets(self):
