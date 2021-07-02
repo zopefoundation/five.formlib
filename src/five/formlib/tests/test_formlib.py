@@ -14,8 +14,9 @@
 
 import unittest
 from doctest import DocTestSuite
-from Testing.ZopeTestCase import FunctionalDocFileSuite
 from uuid import uuid4
+
+from Testing.ZopeTestCase import FunctionalDocFileSuite
 from Testing.ZopeTestCase.zopedoctest.functional import http
 
 
@@ -84,7 +85,7 @@ def http_request(url, form_parts=None, body=None, auth=None):
             "Content-Disposition: form-data; name=\"" + name + "\"\n\n" +
             value + "\n"
             for (name, value) in form_parts
-            ) + "--" + boundary + "--\n"
+        ) + "--" + boundary + "--\n"
     headers = []
     headers.append(("POST" if body is not None else "GET")
                    + " " + url + " HTTP/1.1"
@@ -100,7 +101,7 @@ def http_request(url, form_parts=None, body=None, auth=None):
             "Content-Type: " +
             ("application/x-www-form-urlencoded" if boundary is None
              else "multipart/form-data; boundary=" + boundary)
-                      )
+        )
         body = "\n\n" + body
     return http("\n".join(headers) + (body or ''))
 

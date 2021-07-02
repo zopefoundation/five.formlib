@@ -18,8 +18,8 @@ macro definition is unfortunately incompatible with ZopeTwoPageTemplateFile.
 So this subclass uses ZopeTwoPageTemplateFile for the template that renders
 the widget's sub-editform.
 """
-from AccessControl.SecurityInfo import ClassSecurityInfo
 from AccessControl.class_init import InitializeClass
+from AccessControl.SecurityInfo import ClassSecurityInfo
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from zope.formlib.objectwidget import ObjectWidget as OWBase
 from zope.formlib.objectwidget import ObjectWidgetView as OWVBase

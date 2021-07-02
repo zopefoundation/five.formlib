@@ -14,13 +14,18 @@
 
 from AccessControl.class_init import InitializeClass
 from OFS.SimpleItem import SimpleItem
-
 from zope.formlib.widget import CustomWidgetFactory
 from zope.i18nmessageid import MessageFactory
-from zope.interface import implementer, Interface
-from zope.schema import TextLine, Text, Object, Int, List
+from zope.interface import Interface
+from zope.interface import implementer
+from zope.schema import Int
+from zope.schema import List
+from zope.schema import Object
+from zope.schema import Text
+from zope.schema import TextLine
 
 from five.formlib.objectwidget import ObjectWidget
+
 
 _ = MessageFactory('formtest')
 

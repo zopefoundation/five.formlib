@@ -14,13 +14,13 @@
 
 from AccessControl.class_init import InitializeClass
 from OFS.SimpleItem import SimpleItem
-
 from zope.i18nmessageid import MessageFactory
-from zope.interface import implementer
 from zope.interface import Interface
+from zope.interface import implementer
 from zope.schema import ASCIILine
 from zope.schema import List
 from zope.schema import TextLine
+
 
 _ = MessageFactory('formtest')
 

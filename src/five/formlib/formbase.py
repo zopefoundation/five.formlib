@@ -16,12 +16,14 @@
 import os.path
 
 import zope.formlib
-from zope import interface
-from zope.formlib import interfaces, form
-
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-from ZPublisher import HTTPRequest
+from zope import interface
+from zope.formlib import form
+from zope.formlib import interfaces
 from zope.i18nmessageid import MessageFactory
+from ZPublisher import HTTPRequest
+
+
 _ = MessageFactory("zope")
 
 _FORMLIB_DIR = os.path.dirname(zope.formlib.__file__)
