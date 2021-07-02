@@ -22,6 +22,7 @@ known_zope = "AccessControl, Products.Five, Testing, ZPublisher"
 
 [manifest]
 additional-rules = [
+    "include buildout4.cfg",
     "recursive-include src *.po",
     "recursive-include src *.pot",
     "recursive-include src *.pt",
