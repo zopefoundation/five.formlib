@@ -12,22 +12,22 @@
 #
 ##############################################################################
 
-from AccessControl.security import protectClass
-from AccessControl.class_init import InitializeClass
-from ExtensionClass import Base
-
 import zope.component
-from zope.interface import Interface
-from zope.i18nmessageid import MessageFactory
-
+from AccessControl.class_init import InitializeClass
+from AccessControl.security import protectClass
+from ExtensionClass import Base
+from Products.Five.browser.metaconfigure import SimpleViewClass
+from Products.Five.browser.pagetemplatefile import ZopeTwoPageTemplateFile
 from zope.app.form.browser.metaconfigure import BaseFormDirective
 from zope.browser.interfaces import IAdding
 from zope.browsermenu.metaconfigure import menuItemDirective
+from zope.i18nmessageid import MessageFactory
+from zope.interface import Interface
 from zope.publisher.interfaces.browser import IDefaultBrowserLayer
 
-from Products.Five.browser.pagetemplatefile import ZopeTwoPageTemplateFile
-from Products.Five.browser.metaconfigure import SimpleViewClass
-from five.formlib import EditView, AddView
+from five.formlib import AddView
+from five.formlib import EditView
+
 
 _ = MessageFactory('zope')
 

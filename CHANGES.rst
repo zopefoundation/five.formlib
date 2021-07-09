@@ -4,7 +4,7 @@ Changelog
 2.3 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Lint the code.
 
 
 2.2 (2020-10-26)

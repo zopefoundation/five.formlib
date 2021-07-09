@@ -14,8 +14,10 @@
 
 from zope.formlib import form
 
-from five.formlib.formbase import AddForm, EditForm
-from five.formlib.tests.content import IContent, Content
+from five.formlib.formbase import AddForm
+from five.formlib.formbase import EditForm
+from five.formlib.tests.content import Content
+from five.formlib.tests.content import IContent
 
 
 class AddContentForm(AddForm):

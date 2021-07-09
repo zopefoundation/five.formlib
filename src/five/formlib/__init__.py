@@ -17,29 +17,30 @@ import sys
 from datetime import datetime
 
 import transaction
+from Products.Five.browser import BrowserView
+from Products.Five.browser.pagetemplatefile import ZopeTwoPageTemplateFile
+from zope.app.form.browser.submit import Update
+from zope.app.form.utility import getWidgetsData
+from zope.app.form.utility import setUpEditWidgets
 from zope.event import notify
 from zope.formlib.interfaces import IInputWidget
 from zope.formlib.interfaces import WidgetsError
 from zope.formlib.utility import applyWidgetsChanges
 from zope.formlib.utility import setUpWidgets
-from zope.lifecycleevent import ObjectCreatedEvent, ObjectModifiedEvent
-from zope.lifecycleevent import Attributes
-from zope.location.interfaces import ILocation
-from zope.location import LocationProxy
-from zope.schema.interfaces import ValidationError
 from zope.i18nmessageid import MessageFactory
+from zope.lifecycleevent import Attributes
+from zope.lifecycleevent import ObjectCreatedEvent
+from zope.lifecycleevent import ObjectModifiedEvent
+from zope.location import LocationProxy
+from zope.location.interfaces import ILocation
 from zope.schema import getFieldNamesInOrder
+from zope.schema.interfaces import ValidationError
 
-from zope.app.form.browser.submit import Update
-from zope.app.form.utility import setUpEditWidgets
-from zope.app.form.utility import getWidgetsData
-
-from Products.Five.browser import BrowserView
-from Products.Five.browser.pagetemplatefile import ZopeTwoPageTemplateFile
 
 try:
     # Zope 4.x
-    from Products.Five.browser.decode import processInputs, setPageEncoding
+    from Products.Five.browser.decode import processInputs
+    from Products.Five.browser.decode import setPageEncoding
 except ImportError:
     # Zope 5.x
     def processInputs(*args):

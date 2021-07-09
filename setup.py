@@ -1,5 +1,6 @@
 from setuptools import setup
 
+
 version = '2.3.dev0'
 
 setup(
