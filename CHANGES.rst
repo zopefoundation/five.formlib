@@ -4,7 +4,9 @@ Changelog
 2.3 (unreleased)
 ----------------
 
-- Lint the code.
+* Lint the code.
+
+* Add support for Python 3.10.
 
 
 2.2 (2020-10-26)
@@ -12,13 +14,13 @@ Changelog
 
 * Add support for Zope 5.
 
-* Add support for Python 3.8 and 3.9
+* Add support for Python 3.8 and 3.9.
 
 
 2.1 (2019-03-05)
 ----------------
 
-* Add support for Python 3.5 to 3.7
+* Add support for Python 3.5 to 3.7.
 
 
 2.0 (2018-08-15)
