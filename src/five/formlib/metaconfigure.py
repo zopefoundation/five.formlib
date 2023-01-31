@@ -34,7 +34,7 @@ _ = MessageFactory('zope')
 
 def EditViewFactory(name, schema, label, permission, layer,
                     template, default_template, bases, for_, fields,
-                    fulledit_path=None, fulledit_label=None, menu=u''):
+                    fulledit_path=None, fulledit_label=None, menu=''):
     class_ = SimpleViewClass(template, globals(), used_for=schema,
                              bases=bases)
     class_.schema = schema
@@ -99,7 +99,7 @@ def AddViewFactory(name, schema, label, permission, layer,
                    template, default_template, bases, for_,
                    fields, content_factory, arguments,
                    keyword_arguments, set_before_add, set_after_add,
-                   menu=u''):
+                   menu=''):
     class_ = SimpleViewClass(template, globals(), used_for=schema,
                              bases=bases)
 

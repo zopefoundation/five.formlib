@@ -37,19 +37,6 @@ from zope.schema import getFieldNamesInOrder
 from zope.schema.interfaces import ValidationError
 
 
-try:
-    # Zope 4.x
-    from Products.Five.browser.decode import processInputs
-    from Products.Five.browser.decode import setPageEncoding
-except ImportError:
-    # Zope 5.x
-    def processInputs(*args):
-        pass
-
-    def setPageEncoding(*args):
-        pass
-
-
 _ = MessageFactory('zope')
 
 
@@ -72,8 +59,6 @@ class EditView(BrowserView):
 
     def __init__(self, context, request):
         BrowserView.__init__(self, context, request)
-        processInputs(self.request, self.charsets)
-        setPageEncoding(self.request)
         self._setUpWidgets()
 
     def _setUpWidgets(self):
@@ -180,7 +165,7 @@ class AddView(EditView):
         # hack to please typical Zope 2 factories, which expect id and title
         # Any sane schema will use a unicode title, and may fail on a
         # non-unicode one.
-        args = ('tmp_id', u'Temporary title') + args
+        args = ('tmp_id', 'Temporary title') + args
         return self._factory(*args, **kw)
 
     def createAndAdd(self, data):

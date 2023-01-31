@@ -68,8 +68,7 @@ def http_request(url, form_parts=None, body=None, auth=None):
     """perform HTTP request from given parameters.
 
     The primary purpose of this auxiliary function is to compute
-    the `Content-Length` header. While Python 2's `cgi` module
-    seems resilient to a wrong `Content-Length`, Python 3's `cgi` fails
+    the `Content-Length` header. Python 3's `cgi` fails
     badly (at least for a too small value).
 
     If given, *form_parts* must be an iterable yielding pairs *name*,*value*.

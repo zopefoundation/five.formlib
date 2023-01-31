@@ -3,10 +3,6 @@ Testing forms
 
 Before we can begin, we need to set up a few things.
 
-We prepare for Python 2/3 compatibility:
-
-  >>> import six
-
 We need a manager account:
 
   >>> uf = self.folder.acl_users
@@ -199,20 +195,6 @@ the content, this means that no IObjectModified event should have been fired
 Unicode-safety of forms
 -----------------------
 
-To test unicode values in both Python 2 and Python 3, we need
-an auxiliary function.
-
-The ``http`` and ``http_request`` functions below expect as input
-utf-8 encoded binary strings for Python 2 and strings
-for Python 3. The following function converts our input values
-accordingly:
-
-  >>> def to_input(v):
-  ...     if six.PY2:
-  ...         return v.encode("utf-8")
-  ...     else:
-  ...         return v
-
 Even though ZPublisher does not support unicode, automatically
 generated forms do.  In the following we will enter the following two
 chinese sequences (How do you do? and I'm doing good) in forms:
@@ -227,7 +209,7 @@ phrases in the integer field:
   ...     "/test_folder_1_/ftf/+/addfieldcontent.html", (
   ...         ("field.title", "ChineseTitle"),
   ...         ("field.description", "ChineseDescription"),
-  ...         ("field.somenumber", to_input(ni_hao)),
+  ...         ("field.somenumber", ni_hao),
   ...         ("UPDATE_SUBMIT", "Add"),
   ...         ("add_input_name", "unicodetest"),
   ...     ),
@@ -242,8 +224,8 @@ the form will submit correctly and create the object:
 
   >>> print(http_request(
   ...     "/test_folder_1_/ftf/+/addfieldcontent.html", (
-  ...         ("field.title", to_input(ni_hao)),
-  ...         ("field.description", to_input(wo_hen_hao)),
+  ...         ("field.title", ni_hao),
+  ...         ("field.description", wo_hen_hao),
   ...         ("field.somenumber", "0"),
   ...         ("UPDATE_SUBMIT", "Add"),
   ...         ("add_input_name", "unicodetest"),
@@ -272,7 +254,7 @@ again make the mistake of entering unicode data in the integer field:
   ...     "/test_folder_1_/ftf/unicodetest/@@edit.html", (
   ...         ("field.title", "ChineseTitle"),
   ...         ("field.description", "ChineseDescription"),
-  ...         ("field.somenumber", to_input(ni_hao)),
+  ...         ("field.somenumber", ni_hao),
   ...         ("UPDATE_SUBMIT", "Change"),
   ...     ),
   ...     auth="Basic manager:r00t"))
@@ -294,8 +276,8 @@ Now we provide some valid form data:
 
   >>> print(http_request(
   ...     "/test_folder_1_/ftf/unicodetest/@@edit.html", (
-  ...         ("field.title", to_input(wo_hen_hao)),
-  ...         ("field.description", to_input(ni_hao)),
+  ...         ("field.title", wo_hen_hao),
+  ...         ("field.description", ni_hao),
   ...         ("field.somenumber", "1"),
   ...         ("UPDATE_SUBMIT", "Change"),
   ...     ),
@@ -317,8 +299,8 @@ element to the list:
 
   >>> print(http_request(
   ...     "/test_folder_1_/ftf/unicodetest/@@edit.html", (
-  ...         ("field.title", to_input(ni_hao)),
-  ...         ("field.description", to_input(wo_hen_hao)),
+  ...         ("field.title", ni_hao),
+  ...         ("field.description", wo_hen_hao),
   ...         ("field.somenumber", "1"),
   ...         ("field.somelist.add", "Add Some item"),
   ...         ("field.somelist.count", "0"),
@@ -335,10 +317,10 @@ Now, let's enter some more Chinese:
 
   >>> print(http_request(
   ...     "/test_folder_1_/ftf/unicodetest/@@edit.html", (
-  ...         ("field.title", to_input(ni_hao)),
-  ...         ("field.description", to_input(wo_hen_hao)),
+  ...         ("field.title", ni_hao),
+  ...         ("field.description", wo_hen_hao),
   ...         ("field.somenumber", "1"),
-  ...         ("field.somelist.0.", to_input(de_guo)),
+  ...         ("field.somelist.0.", de_guo),
   ...         ("field.somelist.count", "1"),
   ...         ("UPDATE_SUBMIT", "Change"),
   ...     ),

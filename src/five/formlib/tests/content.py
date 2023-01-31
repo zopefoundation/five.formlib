@@ -28,22 +28,22 @@ _ = MessageFactory('formtest')
 class IContent(Interface):
 
     id = ASCIILine(
-        title=_(u"Id"),
-        description=_(u"The object id."),
+        title=_("Id"),
+        description=_("The object id."),
         default='',
         required=True
     )
 
     title = TextLine(
-        title=_(u"Title"),
-        description=_(u"A short description of the event."),
-        default=u"",
+        title=_("Title"),
+        description=_("A short description of the event."),
+        default="",
         required=True
     )
 
     somelist = List(
-        title=_(u"Some List"),
-        value_type=TextLine(title=_(u"Some item")),
+        title=_("Some List"),
+        value_type=TextLine(title=_("Some item")),
         default=[],
         required=False
     )
