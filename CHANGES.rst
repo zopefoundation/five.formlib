@@ -1,7 +1,7 @@
 Changelog
 =========
 
-2.3 (unreleased)
+3.0 (unreleased)
 ----------------
 
 * Lint the code.
