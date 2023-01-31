@@ -4,9 +4,11 @@ Changelog
 3.0 (unreleased)
 ----------------
 
+* Drop support for Python 2.7, 3.5, 3.6.
+
 * Lint the code.
 
-* Add support for Python 3.10.
+* Add support for Python 3.10 and 3.11.
 
 
 2.2 (2020-10-26)
