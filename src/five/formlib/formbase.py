@@ -31,7 +31,7 @@ _PAGEFORM_PATH = os.path.join(_FORMLIB_DIR, 'pageform.pt')
 _SUBPAGEFORM_PATH = os.path.join(_FORMLIB_DIR, 'subpageform.pt')
 
 
-class FiveFormlibMixin(object):
+class FiveFormlibMixin:
 
     # Overrides the formlib.form.FormBase.template attributes implemented
     # using NamedTemplates. NamedTemplates using ViewPageTemplateFile (like
@@ -50,7 +50,7 @@ class FiveFormlibMixin(object):
             'Content-Type',
             'text/html; charset=%s' % HTTPRequest.default_encoding
         )
-        super(FiveFormlibMixin, self).update()
+        super().update()
 
 
 class FormBase(FiveFormlibMixin, form.FormBase):

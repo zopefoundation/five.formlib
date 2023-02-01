@@ -33,28 +33,28 @@ _ = MessageFactory('formtest')
 class IFieldContent(Interface):
 
     title = TextLine(
-        title=_(u"Title"),
-        description=_(u"A short description of the event."),
-        default=u"",
+        title=_("Title"),
+        description=_("A short description of the event."),
+        default="",
         required=True
     )
 
     description = Text(
-        title=_(u"Description"),
-        description=_(u"A long description of the event."),
-        default=u"",
+        title=_("Description"),
+        description=_("A long description of the event."),
+        default="",
         required=False
     )
 
     somenumber = Int(
-        title=_(u"Some number"),
+        title=_("Some number"),
         default=0,
         required=False
     )
 
     somelist = List(
-        title=_(u"Some List"),
-        value_type=TextLine(title=_(u"Some item")),
+        title=_("Some List"),
+        value_type=TextLine(title=_("Some item")),
         default=[],
         required=False
     )
@@ -82,15 +82,15 @@ def manage_addFieldContent(self, id, title, REQUEST=None):
 class IComplexSchemaContent(Interface):
 
     fishtype = TextLine(
-        title=u"Fish type",
-        description=u"The type of fish",
-        default=u"It was a lovely little fish. And it went wherever I did go.",
+        title="Fish type",
+        description="The type of fish",
+        default="It was a lovely little fish. And it went wherever I did go.",
         required=False)
 
     fish = Object(
-        title=u"Fish",
+        title="Fish",
         schema=IFieldContent,
-        description=u"The fishy object",
+        description="The fishy object",
         required=True)
 
 

@@ -9,10 +9,6 @@ zope/formlib/form.txt for tests and more explanations of zope.formlib
 
 Before we can begin, we need to set up a few things.
 
-We prepare for Python 2/3 compatibility:
-
-  >>> import six
-
 We need a manager account:
 
   >>> uf = self.folder.acl_users
@@ -53,23 +49,12 @@ Let's 'manually' create a Content instance and add it to the folder:
   >>> print(folder.content_1.title)
   Title
 
-Now we can edit this content object, e.g. changing the title. Formlib,
-like the traditional AddView and EditView, supports unicode.
-But we need some hackery for Python 2/3 compatibility. For Python 2,
-the test framework expects utf-8 encoded binary strings; for Python 3,
-it expects text. The function below converts as necessary.
-
-  >>> def to_input(v):
-  ...     if six.PY2:
-  ...         return v.encode("utf-8")
-  ...     else:
-  ...         return v
-
+Now we can edit this content object, e.g. changing the title.
 
   >>> browser.open("http://localhost/test_folder_1_/ftf/content_1/@@edit_content")
   >>> ni_hao = u'\u4f60\u597d'
   >>> ctl = browser.getControl(name="form.title")
-  >>> ctl.value = to_input(ni_hao)
+  >>> ctl.value = ni_hao
   >>> browser.getControl(name="form.actions.apply").click()
   >>> folder.content_1.title == ni_hao
   True
