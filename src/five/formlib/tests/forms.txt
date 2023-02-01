@@ -195,8 +195,8 @@ the content, this means that no IObjectModified event should have been fired
 Unicode-safety of forms
 -----------------------
 
-Even though ZPublisher does not support unicode, automatically
-generated forms do.  In the following we will enter the following two
+Automatically generated forms support unicode (native strings
+under Python 3). Here we will enter the following two
 chinese sequences (How do you do? and I'm doing good) in forms:
 
   >>> ni_hao = u'\u4f60\u597d'
