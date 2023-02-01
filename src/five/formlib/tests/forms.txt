@@ -31,6 +31,9 @@ Let's set up a testbrowser:
   >>> browser = Browser()
   >>> browser.addHeader('Accept-Language', 'en-US')
 
+  >>> # Work around https://github.com/python/cpython/issues/90113
+  >>> browser.raiseHttpErrors = False
+
 Add forms
 ---------
 
@@ -44,10 +47,10 @@ An unprotected form can be accessed with anonymously:
 
 We don't have access, we will not be able to get to the protected add form:
 
-  >>> browser.open("http://localhost/test_folder_1_/ftf/+/protectedaddform.html") # doctest: +IGNORE_EXCEPTION_DETAIL
-  Traceback (most recent call last):
-      ...
-  HTTPError: HTTP Error 401: Unauthorized
+  >>> browser.open("http://localhost/test_folder_1_/ftf/+/protectedaddform.html") 
+  >>> print(browser.headers)
+  Status: 401 ...
+  ...
 
 For a protected one we need a manager account:
 
