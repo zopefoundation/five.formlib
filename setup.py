@@ -1,11 +1,9 @@
 from setuptools import setup
 
 
-version = '3.0.dev0'
-
 setup(
     name='five.formlib',
-    version=version,
+    version='3.0',
     url='https://github.com/zopefoundation/five.formlib',
     license='ZPL 2.1',
     description='zope.formlib integration for Zope.',
