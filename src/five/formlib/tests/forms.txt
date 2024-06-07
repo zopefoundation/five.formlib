@@ -47,7 +47,7 @@ An unprotected form can be accessed with anonymously:
 
 We don't have access, we will not be able to get to the protected add form:
 
-  >>> browser.open("http://localhost/test_folder_1_/ftf/+/protectedaddform.html") 
+  >>> browser.open("http://localhost/test_folder_1_/ftf/+/protectedaddform.html")
   >>> print(browser.headers)
   Status: 401 ...
   ...
@@ -83,7 +83,7 @@ specified attribute is the default value:
   >>> edittest = self.folder.ftf.edittest
   >>> str(edittest.title)
   'title'
-  >>> edittest.description #XXX shouldn't we get a u'' here???
+  >>> edittest.description #XXX shouldn't we get a '' here???
 
 We can also verify that the IObjectCreatedEvent was fired, and the test
 subscriber we registered set a flag indicating such:
@@ -124,7 +124,7 @@ We will see that nothing has changed:
 
   >>> str(edittest.title)
   'title'
-  >>> edittest.description #XXX shouldn't we get a u'' here???
+  >>> edittest.description #XXX shouldn't we get a '' here???
   >>> getattr(edittest, '_modified_flag', False)
   False
 
@@ -198,12 +198,12 @@ the content, this means that no IObjectModified event should have been fired
 Unicode-safety of forms
 -----------------------
 
-Automatically generated forms support unicode (native strings
-under Python 3). Here we will enter the following two
-chinese sequences (How do you do? and I'm doing good) in forms:
+Automatically generated forms support native strings (formerly known as
+``unicode``). Here we will enter the following two chinese sequences ("How do
+you do?" and "I'm doing good.") in forms:
 
-  >>> ni_hao = u'\u4f60\u597d'
-  >>> wo_hen_hao = u'\u6211\u5f88\u597d'
+  >>> ni_hao = '\u4f60\u597d'
+  >>> wo_hen_hao = '\u6211\u5f88\u597d'
 
 First, it's imaginable that we make a mistake and enter one of the
 phrases in the integer field:
@@ -316,7 +316,7 @@ element to the list:
 
 Now, let's enter some more Chinese:
 
-  >>> de_guo = u'\u5fb7\u56fd'
+  >>> de_guo = '\u5fb7\u56fd'
 
   >>> print(http_request(
   ...     "/test_folder_1_/ftf/unicodetest/@@edit.html", (
