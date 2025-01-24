@@ -8,6 +8,8 @@ Changelog
 
 * Drop support for Python 3.7.
 
+* Adapt tests to ``multipart >= 1.x``.
+
 
 3.0 (2023-02-01)
 ----------------
