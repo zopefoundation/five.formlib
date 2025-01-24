@@ -14,14 +14,15 @@
 
 import typing
 import unittest
-import webtest
 from doctest import DocTestSuite
-from uuid import uuid4
 
+import webtest
 from Testing.ZopeTestCase import FunctionalDocFileSuite
 from Testing.ZopeTestCase.zopedoctest.functional import http
 
+
 _TEST_APP_FOR_ENCODING = webtest.TestApp(None)
+
 
 def test_get_widgets_for_schema_fields():
     """
