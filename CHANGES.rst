@@ -4,13 +4,9 @@ Changelog
 4.0 (unreleased)
 ----------------
 
-* Add support for Python 3.13.
+* Add support for Python 3.12, 3.13.
 
-* Drop support for Python 3.8.
-
-* Add support for Python 3.12.
-
-* Drop support for Python 3.7.
+* Drop support for Python 3.7, 3.8.
 
 * Adapt tests to ``multipart >= 1.x``.
 
