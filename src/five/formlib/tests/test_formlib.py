@@ -12,12 +12,16 @@
 #
 ##############################################################################
 
+import typing
 import unittest
 from doctest import DocTestSuite
-from uuid import uuid4
 
+import webtest
 from Testing.ZopeTestCase import FunctionalDocFileSuite
 from Testing.ZopeTestCase.zopedoctest.functional import http
+
+
+_TEST_APP_FOR_ENCODING = webtest.TestApp(None)
 
 
 def test_get_widgets_for_schema_fields():
@@ -64,42 +68,44 @@ def test_get_widgets_for_schema_fields():
     """
 
 
+def encodeMultipartFormdata(
+        fields: typing.List[typing.Tuple[str, str]],
+        files: typing.Optional[list] = None) -> typing.Tuple[str, str]:
+    """Encode fields and files to be used in a multipart/form-data request.
+
+    Returns a tuple of content-type and content.
+
+    Copied over from `zope.app.wsgi.testlayer` and adapted to return `str` as
+    `Testing.ZopeTestCase.zopedoctest.functional.http` expects so.
+    """
+    if files is None:
+        files = []
+    content_type, content = _TEST_APP_FOR_ENCODING.encode_multipart(
+        fields, files)
+    return content_type, content.decode('utf-8')
+
+
 def http_request(url, form_parts=None, body=None, auth=None):
     """perform HTTP request from given parameters.
-
-    The primary purpose of this auxiliary function is to compute
-    the `Content-Length` header.
 
     If given, *form_parts* must be an iterable yielding pairs *name*,*value*.
     *body* is then computed as a typical form response from it.
     Otherwise, if *body* is not `None`, it defines the request content.
     Otherwise, a `GET` request is created.
     """
-    boundary = None
     if form_parts is not None:
-        boundary = str(uuid4())
-        body = "".join(
-            "--" + boundary + "\n" +
-            "Content-Disposition: form-data; name=\"" + name + "\"\n\n" +
-            value + "\n"
-            for (name, value) in form_parts
-        ) + "--" + boundary + "--\n"
-    headers = []
-    headers.append(("POST" if body is not None else "GET")
-                   + " " + url + " HTTP/1.1"
-                   )
+        content_type, body = encodeMultipartFormdata(fields=form_parts)
+    else:
+        content_type = "application/x-www-form-urlencoded"
+    headers = [f'{"GET" if body is None else "POST"} {url} HTTP/1.1']
+
     if auth:
-        headers.append("Authorization: " + auth)
+        headers.append(f"Authorization: {auth}")
     headers.append("Accept-Charset: ISO-8859-1,utf-8;q=0.7,*;q=0.7")
     if body is not None:
         if not body.endswith("\n"):
             body += "\n"
-        headers.append("Content-Length: " + str(len(body)))
-        headers.append(
-            "Content-Type: " +
-            ("application/x-www-form-urlencoded" if boundary is None
-             else "multipart/form-data; boundary=" + boundary)
-        )
+        headers.append(f"Content-Type: {content_type}")
         body = "\n\n" + body
     return http("\n".join(headers) + (body or ''))
 
