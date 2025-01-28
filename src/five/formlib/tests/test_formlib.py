@@ -69,8 +69,8 @@ def test_get_widgets_for_schema_fields():
 
 
 def encodeMultipartFormdata(
-        fields: list[tuple[str, str]],
-        files: typing.Optional[list] = None) -> tuple[str, str]:
+        fields: typing.List[typing.Tuple[str, str]],
+        files: typing.Optional[list] = None) -> typing.Tuple[str, str]:
     """Encode fields and files to be used in a multipart/form-data request.
 
     Returns a tuple of content-type and content.
