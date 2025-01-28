@@ -17,7 +17,6 @@ import unittest
 from doctest import DocTestSuite
 
 import webtest
-
 from Testing.ZopeTestCase import FunctionalDocFileSuite
 from Testing.ZopeTestCase.zopedoctest.functional import http
 
