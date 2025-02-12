@@ -30,9 +30,6 @@ setup(
         "Topic :: Software Development :: Libraries :: Application Frameworks",
     ],
     keywords='zope zope5 five formlib',
-    packages=['five', 'five.formlib'],
-    package_dir={'': 'src'},
-    namespace_packages=['five'],
     include_package_data=True,
     python_requires='>=3.9',
     install_requires=[
