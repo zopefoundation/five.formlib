@@ -1,3 +1,4 @@
+from setuptools import find_packages
 from setuptools import setup
 
 
@@ -30,7 +31,7 @@ setup(
         "Topic :: Software Development :: Libraries :: Application Frameworks",
     ],
     keywords='zope zope5 five formlib',
-    packages=['five', 'five.formlib'],
+    packages=find_packages('src'),
     package_dir={'': 'src'},
     namespace_packages=['five'],
     include_package_data=True,
