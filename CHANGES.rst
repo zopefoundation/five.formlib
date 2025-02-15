@@ -4,8 +4,10 @@ Changelog
 5.0 (unreleased)
 ----------------
 
-* Drop support for ``pkg_resources`` namespace and replace it with PEP 420 native namespace.
-
+* Drop support for ``pkg_resources`` namespace and replace it with
+  PEP 420 native namespace.
+  Caution: This change requires to switch all packages in the `five`
+  namespace to versions using a PEP 420 namespace.
 
 4.0 (2025-01-29)
 ----------------
