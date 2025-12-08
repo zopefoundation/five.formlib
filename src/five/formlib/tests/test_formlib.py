@@ -12,7 +12,6 @@
 #
 ##############################################################################
 
-import typing
 import unittest
 from doctest import DocTestSuite
 
@@ -70,7 +69,7 @@ def test_get_widgets_for_schema_fields():
 
 def encodeMultipartFormdata(
         fields: list[tuple[str, str]],
-        files: typing.Optional[list] = None) -> tuple[str, str]:
+        files: list | None = None) -> tuple[str, str]:
     """Encode fields and files to be used in a multipart/form-data request.
 
     Returns a tuple of content-type and content.
