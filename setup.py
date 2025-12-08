@@ -35,6 +35,7 @@ setup(
     install_requires=[
         'setuptools',
         'transaction',
+        'zope.app.form',
         'zope.browser',
         'zope.browsermenu',
         'zope.component',
