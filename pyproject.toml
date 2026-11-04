@@ -9,7 +9,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "five.formlib"
-version = "5.1"
+version = "5.2.dev0"
 description = "zope.formlib integration for Zope."
 license = "ZPL-2.1"
 classifiers = [
